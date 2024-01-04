@@ -2,13 +2,14 @@
 
 # 文件路径，存储账户信息的文件
 ACCOUNT_FILE="account.txt"
+LOG_FILE="script.log"
 
 # start命令
 start() {
     echo "启动中..."
     while IFS= read -r account || [ -n "$account" ]; do
         # 后台执行 python3 main.py x
-        python3 main.py "$account" > /dev/null 2>&1 &
+        python3 main.py "$account" >> "$LOG_FILE" 2>&1 &
     done < "$ACCOUNT_FILE"
     echo "启动完成"
 }
