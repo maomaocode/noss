@@ -186,7 +186,12 @@ def post_event(e):
     }
 
     response = requests.post(url, headers=headers, data=e)
-    logging.info(f"挖掘成功 {e}, 提交结果 {response.text}")
+    if response.status_code != 200:
+        logging.info(f"提交失败 code {response.status_code}, 暂停60s")
+        time.sleep(60)
+    else:
+        logging.info(f"挖掘成功 {e}, 提交结果 {response.text}")
+    
 
 
 def get_var(v):
