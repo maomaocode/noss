@@ -286,7 +286,7 @@ if __name__ == "__main__":
     # 检查环境
     check_env()
     try:
-        for i in range(30):
+        for i in range(5):
             process = multiprocessing.Process(target=mine_data_and_submit,
                                               args=(identity_pk,))
             process.start()
