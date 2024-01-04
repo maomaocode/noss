@@ -8,7 +8,7 @@ start() {
     echo "启动中..."
     while IFS= read -r account || [ -n "$account" ]; do
         # 后台执行 python3 main.py x
-        python3 main.py "$account" &
+        python3 main.py "$account" > /dev/null 2>&1 &
     done < "$ACCOUNT_FILE"
     echo "启动完成"
 }
