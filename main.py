@@ -1,6 +1,7 @@
 import json
 import math
 import random
+import sys
 
 import requests
 import string
@@ -267,9 +268,12 @@ def check_env():
     logging.info("环境检查完成，开始运行!!!")
 
 if __name__ == "__main__":
+    
+    args = sys.argv[1:]
     process_list = []
     # 初始化钱包
-    identity_pk = PrivateKey.from_nsec("nsec1rt3we4wgp2qarm985esws45fgdcguzvxpryegp3jarhjh6lrk5cs4gzgsu")
+    pk = args[0]
+    identity_pk = PrivateKey.from_nsec(pk)
     logging.info(f"Public key: {identity_pk.public_key.bech32()}")
     # 开启进程获取event_id的线程
     p1 = multiprocessing.Process(target=open_ws)
